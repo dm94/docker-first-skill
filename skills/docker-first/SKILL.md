@@ -1,6 +1,11 @@
 ---
 name: docker-first
 description: Run code, scripts and tools inside ephemeral Docker containers instead of installing anything on the host. Use this skill whenever a task requires running Python, Node, Go, Rust, Java, ffmpeg, pandoc, ImageMagick, or any other runtime, CLI tool or library, or whenever you are about to run pip install, npm install, npm install -g, apt install, brew install, cargo install, gem install, or curl | sh. Use it even if the user does not mention Docker, containers or isolation. Prefer an official image dedicated to the task over installing dependencies locally.
+license: MIT
+compatibility: Requires Docker (or rootless Podman) on the host.
+metadata:
+  author: dm94
+  version: "1.0.0"
 ---
 
 # Docker-first

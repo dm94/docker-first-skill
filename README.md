@@ -1,5 +1,7 @@
 # docker-first
 
+[![skills.sh](https://skills.sh/b/dm94/docker-first-skill)](https://skills.sh/dm94/docker-first-skill)
+
 An agent skill that makes AI coding agents **run code and tools inside
 ephemeral Docker containers instead of installing things on your machine**.
 
@@ -19,19 +21,42 @@ directory, running as your user, and with the network off by default.
 
 ## Install
 
-The skill is the `docker-first/` folder (a `SKILL.md` plus a reference file).
-Copy it to where your agent looks for skills:
+### Skills CLI (recommended)
+
+One command installs the skill into every detected agent — Claude Code, Codex,
+Cursor, OpenCode, GitHub Copilot, Windsurf, Gemini and
+[75+ more](https://github.com/vercel-labs/skills/blob/main/docs/agents.md).
+
+```bash
+# Install into the current project
+npx skills add dm94/docker-first-skill
+
+# Install globally, available in every project
+npx skills add dm94/docker-first-skill -g
+
+# Non-interactive: only this skill, only Claude Code
+npx skills add dm94/docker-first-skill --skill docker-first -g -a claude-code -y
+```
+
+The published page is <https://skills.sh/dm94/docker-first-skill>.
+
+### Manual install
+
+The skill is the `skills/docker-first/` folder (a `SKILL.md` plus a reference
+file). Copy it to where your agent looks for skills:
 
 | Agent | Location |
 |---|---|
 | Claude Code (personal) | `~/.claude/skills/docker-first/` |
 | Claude Code (project) | `.claude/skills/docker-first/` |
-| Claude.ai / Claude apps | Zip the `docker-first/` folder and upload it in Settings → Capabilities → Skills |
-| Other agents (Cursor, Codex, etc.) | Copy the contents of `SKILL.md` into the agent's rules/instructions file (`.cursor/rules`, `AGENTS.md`, ...) |
+| OpenCode (project) | `.opencode/skills/docker-first/` |
+| Codex / Cursor / other agents | `.agents/skills/docker-first/` |
+| Claude.ai / Claude apps | Zip the `skills/docker-first/` folder and upload it in Settings → Capabilities → Skills |
+| Other agents | Copy the contents of `SKILL.md` into the agent's rules/instructions file (`.cursor/rules`, `AGENTS.md`, ...) |
 
 ```bash
-# Example: Claude Code, personal install
-git clone <this-repo> && cp -r <this-repo>/docker-first ~/.claude/skills/
+git clone https://github.com/dm94/docker-first-skill
+cp -r docker-first-skill/skills/docker-first ~/.claude/skills/
 ```
 
 ## Important limitations
@@ -49,10 +74,25 @@ git clone <this-repo> && cp -r <this-repo>/docker-first ~/.claude/skills/
 ## Contents
 
 ```
-docker-first/
-├── SKILL.md              # Rules and workflow
-└── references/
-    └── images.md         # Task → recommended image table and tips
+docker-first-skill/
+├── skills/
+│   └── docker-first/
+│       ├── SKILL.md              # Rules and workflow
+│       └── references/
+│           └── images.md         # Task → recommended image table and tips
+├── skills.sh.json                # skills.sh repository page layout
+├── README.md
+└── LICENSE
+```
+
+## Development
+
+The skill follows the [Agent Skills specification](https://agentskills.io/specification)
+and the repository uses the standard `skills/<name>/` layout discovered by the
+Skills CLI. To verify that the skill is discoverable before publishing:
+
+```bash
+npx skills add ./ --list
 ```
 
 ## Contributing
